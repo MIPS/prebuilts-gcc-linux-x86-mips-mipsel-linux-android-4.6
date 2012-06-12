@@ -12,7 +12,6 @@ SECTIONS
   .interp       0 : { *(.interp) }
   .reginfo      0 : { *(.reginfo) }
   .note.gnu.build-id : { *(.note.gnu.build-id) }
-  .dynamic      0 : { *(.dynamic) }
   .hash         0 : { *(.hash) }
   .gnu.hash     0 : { *(.gnu.hash) }
   .dynsym       0 : { *(.dynsym) }
@@ -97,8 +96,6 @@ SECTIONS
   .gcc_except_table 0 : ONLY_IF_RO { *(.gcc_except_table .gcc_except_table.*) }
   /* Adjust the address for the data segment.  We want to align at exactly
      a page boundary to make life easier for apriori. */
-  . = ALIGN(4096);
-  . = DATA_SEGMENT_ALIGN(4096,4096);
   /* Exception handling  */
   .eh_frame     0 : ONLY_IF_RW { KEEP (*(.eh_frame)) }
   .gcc_except_table 0 : ONLY_IF_RW { *(.gcc_except_table .gcc_except_table.*) }
@@ -115,6 +112,7 @@ SECTIONS
     KEEP (*(.preinit_array))
   }
   .jcr          0 : { KEEP (*(.jcr)) }
+  .dynamic      0 : { *(.dynamic) }
   .data         0 :
   {
     *(.data)
